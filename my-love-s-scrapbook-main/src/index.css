@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 100% 97%;
+    --foreground: 340 30% 25%;
+
+    --card: 340 60% 96%;
+    --card-foreground: 340 30% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 30% 25%;
+
+    --primary: 346 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 80% 90%;
+    --secondary-foreground: 340 40% 30%;
+
+    --muted: 340 40% 93%;
+    --muted-foreground: 340 20% 50%;
+
+    --accent: 0 70% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 40% 88%;
+    --input: 340 40% 88%;
+    --ring: 346 100% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom romantic tokens */
+    --blush: 340 100% 85%;
+    --deep-rose: 346 100% 65%;
+    --cream: 30 50% 96%;
+    --love-red: 0 70% 55%;
+    --soft-pink: 350 100% 88%;
+    --paper: 35 40% 95%;
+    --gold: 40 70% 60%;
+
+    --font-handwritten: 'Caveat', cursive;
+    --font-body: 'Quicksand', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-handwritten);
+  }
+}
+
+/* Heart pattern background */
+.bg-hearts-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 50%, hsl(var(--soft-pink) / 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, hsl(var(--blush) / 0.3) 0%, transparent 50%);
+}
+
+/* Paper texture */
+.bg-paper {
+  background-color: hsl(var(--paper));
+  background-image: 
+    linear-gradient(0deg, hsl(var(--border) / 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scrapbook tape */
+.tape {
+  background-color: hsl(var(--gold) / 0.5);
+  position: absolute;
+  width: 80px;
+  height: 24px;
+  transform: rotate(-3deg);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px hsl(var(--foreground) / 0.1);
+}
+
+/* Floating hearts animation */
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg) scale(1);
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+  animation: float-heart linear infinite;
+  pointer-events: none;
+}
+
+/* Gift box bounce */
+@keyframes gift-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes gift-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.gift-bounce {
+  animation: gift-bounce 2s ease-in-out infinite;
+}
+
+.gift-shake:hover {
+  animation: gift-shake 0.3s ease-in-out infinite;
+}
+
+/* Confetti */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  animation: confetti-fall linear forwards;
+}
+
+/* Balloon float */
+@keyframes balloon-float {
+  0% { transform: translateY(100px) scale(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.balloon-float {
+  animation: balloon-float 1s ease-out forwards;
+}
+
+/* Typing cursor */
+@keyframes blink-cursor {
+  0%, 100% { border-color: hsl(var(--primary)); }
+  50% { border-color: transparent; }
+}
+
+.typing-cursor {
+  border-right: 2px solid hsl(var(--primary));
+  animation: blink-cursor 0.8s step-end infinite;
+}
+
+/* Polaroid hover */
+.polaroid {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 10px 30px hsl(var(--foreground) / 0.15);
+}
+
+/* Heart pop */
+@keyframes heart-pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.heart-pop {
+  animation: heart-pop 0.5s ease-out forwards;
+}
+
+/* Glow effect */
+.glow-btn {
+  box-shadow: 0 0 15px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.2);
+}
+
+/* Doodle star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Gentle sway animation */
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.sway {
+  animation: sway 4s ease-in-out infinite;
+}
+
+/* Wiggle animation for stickers */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+.wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* Bounce in animation */
+@keyframes bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.bounce-in {
+  animation: bounce-in 0.6s ease-out forwards;
+}
+
+/* Float and bob gently */
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-bob {
+  animation: float-bob 3s ease-in-out infinite;
+}
+
+/* Pulse glow for hearts */
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 3px hsl(346, 100%, 65%)); }
+  50% { filter: drop-shadow(0 0 12px hsl(346, 100%, 65%)); }
+}
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Sparkle flash */
+@keyframes sparkle-flash {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+}
+.sparkle-flash {
+  animation: sparkle-flash 2.5s ease-in-out infinite;
+}
+
+/* Kiss pop */
+@keyframes kiss-pop {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+}
+.kiss-pop {
+  animation: kiss-pop 0.5s ease-out forwards;
+}
+
+/* Washi tape slight rotation */
+.washi-tape {
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+.washi-tape:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Sticker effect with shadow */
+.sticker {
+  filter: drop-shadow(2px 3px 4px hsl(var(--foreground) / 0.1));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.sticker:hover {
+  transform: scale(1.1) rotate(-3deg);
+  filter: drop-shadow(3px 5px 8px hsl(var(--foreground) / 0.15));
+}
+
+/* Emoji burst explosion */
+@keyframes emoji-burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--burst-x), var(--burst-y)) scale(0.3);
+    opacity: 0;
+  }
+}
+.emoji-burst {
+  animation: emoji-burst 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Stamp slam effect */
+@keyframes stamp-slam {
+  0% { transform: scale(3) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(0.9) rotate(-8deg); opacity: 1; }
+  80% { transform: scale(1.05) rotate(-8deg); }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+.stamp-slam {
+  animation: stamp-slam 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+/* Jelly wobble for fun interactions */
+@keyframes jelly {
+  0%, 100% { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+.jelly {
+  animation: jelly 0.5s ease-in-out;
+}
+
+/* Spin and float for decorative elements */
+@keyframes spin-float {
+  0% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(180deg) translateY(-5px); }
+  100% { transform: rotate(360deg) translateY(0); }
+}
+.spin-float {
+  animation: spin-float 6s linear infinite;
+}
+
+/* Rubber band snap */
+@keyframes rubber-band {
+  0% { transform: scaleX(1); }
+  30% { transform: scaleX(1.25); }
+  40% { transform: scaleX(0.75); }
+  50% { transform: scaleX(1.15); }
+  65% { transform: scaleX(0.95); }
+  75% { transform: scaleX(1.05); }
+  100% { transform: scaleX(1); }
+}
+.rubber-band {
+  animation: rubber-band 0.8s ease-in-out;
+}
+
+/* Scroll reveal */
+@keyframes scroll-reveal {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.scroll-reveal {
+  animation: scroll-reveal 0.8s ease-out forwards;
+}
+
+/* Cinematic fade */
+@keyframes cinematic-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.animate-fade-in {
+  animation: cinematic-fade 1.5s ease-out forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
